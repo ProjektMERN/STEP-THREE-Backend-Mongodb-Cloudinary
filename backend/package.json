@@ -1,0 +1,30 @@
+{
+    "name": "backend",
+    "version": "1.0.0",
+    "description": "Könyvesbolt szerveroldali része.",
+    "main": "server.js",
+    "scripts": {
+        "dev": "nodemon server.js",
+        "start": "node server.js"
+    },
+    "keywords": [
+        "express",
+        "ejs",
+        "cloudinary"
+    ],
+    "author": "SZBI Szeged 13/a",
+    "license": "MIT",
+    "type": "commonjs",
+    "dependencies": {
+        "bcrypt": "^6.0.0",
+        "cloudinary": "^2.7.0",
+        "cors": "^2.8.5",
+        "dotenv": "^17.2.3",
+        "ejs": "^3.1.10",
+        "express": "^5.1.0",
+        "mongoose": "^8.19.1"
+    },
+    "devDependencies": {
+        "nodemon": "^3.1.10"
+    }
+}

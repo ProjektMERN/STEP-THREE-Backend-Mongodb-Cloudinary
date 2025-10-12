@@ -1,0 +1,17 @@
+@import url('./alap.css');
+
+#not-found-kontener {
+    align-items: center;
+    background-color: var(--sotetszurke);
+    color: var(--feher);
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    height: 100vh;
+    justify-content: center;
+    width: 100vw;
+}
+
+#not-found-kontener a {
+    color: var(--feher);
+}
