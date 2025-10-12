@@ -1,0 +1,10 @@
+.navbar-kontener {
+    background-color: blue;
+    padding: 1em;
+}
+
+.navbar-kontener a {
+    color: whitesmoke;
+    cursor: pointer;
+    text-decoration: none;
+}

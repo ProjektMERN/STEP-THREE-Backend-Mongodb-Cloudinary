@@ -1,0 +1,8 @@
+.home-kontener {
+    margin: auto;
+    width: 80%;
+}
+
+.home-kontener h1 {
+    color: red;
+}
