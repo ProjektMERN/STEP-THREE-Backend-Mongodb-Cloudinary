@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0"
+        />
+        <link
+            rel="stylesheet"
+            href="/css/new-book.css"
+        />
+        <title>Új könyv felvétele</title>
+    </head>
+    <body>
+        <%- include('nav.ejs') %>
+        <div id="new-book-kontener">
+            <h1>Új könyv felvétele</h1>
+            <form>
+                <table>
+                    <tr>
+                        <td>Cím:</td>
+                        <td>
+                            <input
+                                type="text"
+                                id="cim"
+                            />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Szerzők:</td>
+                        <td>
+                            <input
+                                type="text"
+                                id="szerzok"
+                            />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Oldalszám:</td>
+                        <td>
+                            <input
+                                type="number"
+                                id="oldalszam"
+                            />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Tartalom:</td>
+                        <td>
+                            <textarea
+                                rows="10"
+                                cols="100"
+                                id="tartalom"
+                            ></textarea>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Ár:</td>
+                        <td>
+                            <input
+                                type="number"
+                                id="ar"
+                            />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Kép:</td>
+                        <td>
+                            <input
+                                type="text"
+                                id="kep"
+                            />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <button onclick="letrehoz(event)">Létrehoz</button>
+                        </td>
+                        <td></td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+        <script src="/js/letrehoz.js"></script>
+    </body>
+</html>

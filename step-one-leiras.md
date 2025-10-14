@@ -220,9 +220,9 @@ exports.getMainBackend = (req, res) => {
 };
 ```
 
--   [ ] Hozzunk létre a `routes` mappában egy `mainRoutesBackend.js` állományt és szerkesszük.
-
 ---
+
+-   [ ] Hozzunk létre a `routes` mappában egy `mainRoutesBackend.js` állományt és szerkesszük.
 
 ```
 > cd routes
@@ -296,6 +296,7 @@ module.exports = router;
         <div id="not-found-kontener">
             <h1>404 Not Found Error!</h1>
             <p>A keresett erőforrás nem található!</p>
+            <p><a href="/api">Vissza a főoldalra!</a></p>
         </div>
     </body>
 </html>

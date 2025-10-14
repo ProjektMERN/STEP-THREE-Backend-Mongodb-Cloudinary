@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0"
+        />
+        <link
+            rel="stylesheet"
+            href="/css/books.css"
+        />
+        <title>Könyvek backend</title>
+    </head>
+    <body>
+        <%- include('nav.ejs') %>
+        <div id="books-kontener">
+            <h1>Könyvek</h1>
+            <p><a href="/api/new-book">Új könyv felvétele</a></p>
+            <div id="konyvek">
+                <% books.forEach(elem => { %>
+                <div class="konyv">
+                    <table>
+                        <tr>
+                            <td>Cím:</td>
+                            <td><%= elem.cim %></td>
+                        </tr>
+                        <tr>
+                            <td>szerzők:</td>
+                            <td>
+                                <% elem.szerzok.forEach(item => { %>
+                                <span><%= item %></span><br />
+                                <% }) %>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Oldalszám:</td>
+                            <td><%= elem.oldalszam %></td>
+                        </tr>
+                        <tr>
+                            <td>Tartalom:</td>
+                            <td><%= elem.tartalom %></td>
+                        </tr>
+                        <tr>
+                            <td>Ár:</td>
+                            <td><%= elem.ar %> Ft</td>
+                        </tr>
+                        <tr>
+                            <td>Kép:</td>
+                            <td>
+                                <img src="<%= elem.kep %>" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <a
+                                    class="modosit"
+                                    href="/api/books-backend/<%= elem._id %>"
+                                >
+                                    Módosítás
+                                </a>
+                            </td>
+                            <td>
+                                <button
+                                    class="torol"
+                                    onclick="torles('<%= elem._id%>')"
+                                >
+                                    Törlés
+                                </button>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <% }) %>
+            </div>
+        </div>
+        <script src="/js/konyv-kezel.js"></script>
+    </body>
+</html>

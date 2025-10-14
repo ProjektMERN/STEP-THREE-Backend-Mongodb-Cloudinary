@@ -14,15 +14,29 @@ const PORT = process.env.PORT || 3500;
 app.use(express.static(path.join(__dirname, 'public')));
 // ejs megjelenítő motor beállítása
 app.set('view engine', 'ejs');
+// json állományok feldolgozása
+app.use(express.json());
 
-// szerver figyelő módba állítása, hogy figyelje az adott
-// portszámon érkező request-eket
-app.listen(PORT, () => {
-    console.log(`http://localhost:${PORT}`);
-});
+// adatbázis csatlakozás
+const dbConnect = require('./utils/dbConnection');
+
+dbConnect()
+    .then(() => {
+        console.log('Sikeres adatbázis csatlakozás!');
+        // szerver figyelő módba állítása, hogy figyelje az adott
+        // portszámon érkező request-eket
+        app.listen(PORT, () => {
+            console.log(`http://localhost:${PORT}/api`);
+        });
+    })
+    .catch((error) => {
+        console.log('Hiba: ' + error.msg);
+    });
 
 // route-ok kezelése
-app.use('/', require('./routes/mainRoutesBackend'));
+app.use('/api', require('./routes/mainRoutesBackend'));
+app.use('/api/books-backend', require('./routes/booksRoutesBackend'));
+app.use('/api/new-book', require('./routes/newBookRoutesBackend'));
 
 // nem létező route-ok kezelése, mindig ez legyen az utolsó
 app.use((req, res) => {

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0"
+        />
+        <link
+            rel="stylesheet"
+            href="/css/book.css"
+        />
+        <title>Egy könyv módosítása</title>
+    </head>
+    <body>
+        <%- include('nav.ejs') %>
+        <div id="book-kontener">
+            <h1>Egy könyv módosítása</h1>
+            <form>
+                <table>
+                    <tr>
+                        <td>Cím:</td>
+                        <td>
+                            <input
+                                type="text"
+                                id="cim"
+                                value="<%= book.cim %>"
+                            />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Szerzők:</td>
+                        <td>
+                            <input
+                                type="text"
+                                id="szerzok"
+                                value="<%= book.szerzok %>"
+                            />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Oldalszám:</td>
+                        <td>
+                            <input
+                                type="number"
+                                id="oldalszam"
+                                value="<%= book.oldalszam %>"
+                            />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Tartalom:</td>
+                        <td>
+                            <textarea
+                                rows="10"
+                                cols="100"
+                                id="tartalom"
+                            >
+<%= book.tartalom %></textarea
+                            >
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Ár:</td>
+                        <td>
+                            <input
+                                type="number"
+                                id="ar"
+                                value="<%= book.ar %>"
+                            />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Kép:</td>
+                        <td>
+                            <input
+                                type="text"
+                                id="kep"
+                                value="<%= book.kep %>"
+                            />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <button onclick="modosit(event, '<%= book._id %>')">
+                                Módosít
+                            </button>
+                        </td>
+                        <td></td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+        <script src="/js/konyv-modosit.js"></script>
+    </body>
+</html>

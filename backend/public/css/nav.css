@@ -1,0 +1,16 @@
+nav {
+    background-color: var(--kek);
+    display: flex;
+    flex-direction: row;
+    gap: 1em;
+    list-style-type: none;
+    width: 100%;
+}
+
+nav li a {
+    color: var(--feher);
+    display: block;
+    padding: 1em;
+    text-decoration: none;
+    width: 100%;
+}

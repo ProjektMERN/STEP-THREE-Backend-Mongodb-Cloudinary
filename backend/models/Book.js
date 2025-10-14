@@ -1,0 +1,37 @@
+const mongoose = require('mongoose');
+
+const bookSchema = new mongoose.Schema(
+    {
+        cim: {
+            type: String,
+            required: true,
+        },
+        szerzok: [
+            {
+                type: String,
+                required: true,
+            },
+        ],
+        oldalszam: {
+            type: Number,
+            required: true,
+        },
+        tartalom: {
+            type: String,
+            required: true,
+        },
+        ar: {
+            type: Number,
+            required: true,
+        },
+        kep: {
+            type: String,
+            required: true,
+        },
+    },
+    { timestamps: true }
+);
+
+const BookModel = mongoose.model('book', bookSchema);
+
+module.exports = BookModel;
