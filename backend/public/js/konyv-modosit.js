@@ -2,6 +2,7 @@ async function modosit(event, id) {
     event.preventDefault();
     const cim = document.querySelector('#cim').value;
     const szerzok = document.querySelector('#szerzok').value;
+    const zsaner = document.querySelector('#zsaner').value;
     const oldalszam = document.querySelector('#oldalszam').value;
     const tartalom = document.querySelector('#tartalom').value;
     const ar = document.querySelector('#ar').value;
@@ -12,7 +13,15 @@ async function modosit(event, id) {
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ cim, szerzok, oldalszam, tartalom, ar, kep }),
+        body: JSON.stringify({
+            cim,
+            szerzok,
+            zsaner,
+            oldalszam,
+            tartalom,
+            ar,
+            kep,
+        }),
     });
 
     if (response.ok) {

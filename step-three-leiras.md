@@ -87,6 +87,25 @@ app.use((req, res) => {
 
 ## Könyv modell (Book)
 
+-   [ ] A `public/js` mappában hozzunk létre egy `adatok.js` állományt.
+
+```
+> cd backend
+> cd public
+> cd js
+> touch adatok.js
+```
+
+### `adatok.js` állomány szerkesztése:
+
+```
+let zsanerek = ['sci-fi', 'fantasy', 'krimi', 'szerelmes'];
+
+module.exports = zsanerek;
+```
+
+---
+
 -   [ ] A `models` mappában hozzunk létre egy `Book.js` állományt.
 
 ```
@@ -112,6 +131,10 @@ const bookSchema = new mongoose.Schema(
                 required: true,
             },
         ],
+        zsaner: {
+            type: String,
+            required: true,
+        },
         oldalszam: {
             type: Number,
             required: true,
@@ -290,6 +313,10 @@ app.use((req, res) => {
                             </td>
                         </tr>
                         <tr>
+                            <td>Zsáner:</td>
+                            <td><%= elem.zsaner %></td>
+                        </tr>
+                        <tr>
                             <td>Oldalszám:</td>
                             <td><%= elem.oldalszam %></td>
                         </tr>
@@ -333,7 +360,6 @@ app.use((req, res) => {
         <script src="/js/konyv-kezel.js"></script>
     </body>
 </html>
-
 ```
 
 ### `books.css` szerkesztése
@@ -503,7 +529,7 @@ exports.getNewBookBackend = (req, res) => {
 > touch newBookRoutesBackend.js
 ```
 
-### `newBookRoutesBackendjs` szerkesztése
+### `newBookRoutesBackend.js` szerkesztése
 
 ```
 const express = require('express');
@@ -623,6 +649,19 @@ app.use((req, res) => {
                         </td>
                     </tr>
                     <tr>
+                        <td>Zsáner:</td>
+                        <td>
+                            <select id="zsaner">
+                                <% for( let i = 0; i < zsanerek.length; i++ ) {
+                                %>
+                                <option value="<%= zsanerek[i] %>">
+                                    <%= zsanerek[i] %>
+                                </option>
+                                <% } %>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
                         <td>Oldalszám:</td>
                         <td>
                             <input
@@ -728,6 +767,7 @@ async function letrehoz(event) {
     event.preventDefault();
     const cim = document.querySelector('#cim').value;
     const szerzok = document.querySelector('#szerzok').value;
+    const zsaner = document.querySelector('#zsaner').value;
     const oldalszam = document.querySelector('#oldalszam').value;
     const tartalom = document.querySelector('#tartalom').value;
     const ar = document.querySelector('#ar').value;
@@ -738,36 +778,18 @@ async function letrehoz(event) {
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ cim, szerzok, oldalszam, tartalom, ar, kep }),
+        body: JSON.stringify({
+            cim,
+            szerzok,
+            zsaner,
+            oldalszam,
+            tartalom,
+            ar,
+            kep,
+        }),
     });
 
-    if (response.ok) {
-        const resp = await response.json();
-        window.alert(resp.msg);
-        window.location.href = '/api/books-backend';
-    }
-}
-```
-
-### `letrehoz.js` szerkesztése
-
-```
-async function letrehoz(event) {
-    event.preventDefault();
-    const cim = document.querySelector('#cim').value;
-    const szerzok = document.querySelector('#szerzok').value;
-    const oldalszam = document.querySelector('#oldalszam').value;
-    const tartalom = document.querySelector('#tartalom').value;
-    const ar = document.querySelector('#ar').value;
-    const kep = document.querySelector('#kep').value;
-
-    const response = await fetch('/api/new-book', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ cim, szerzok, oldalszam, tartalom, ar, kep }),
-    });
+    console.log(response);
 
     if (response.ok) {
         const resp = await response.json();
@@ -781,11 +803,12 @@ async function letrehoz(event) {
 
 ```
 const Book = require('../models/Book');
+const zsanerek = require('../public/js/adatok');
 
 exports.getNewBookBackend = (req, res) => {
     try {
         res.statusCode = 200;
-        return res.render('new-book.ejs');
+        return res.render('new-book.ejs', { zsanerek });
     } catch (error) {
         res.statusCode = 500;
         return res.render('404.ejs');
@@ -794,13 +817,14 @@ exports.getNewBookBackend = (req, res) => {
 
 exports.postNewBookBackend = async (req, res) => {
     try {
-        const { cim, szerzok, oldalszam, tartalom, ar, kep } = req.body;
+        const { cim, szerzok, zsaner, oldalszam, tartalom, ar, kep } = req.body;
 
         const irok = szerzok.split(',');
 
         const newBook = new Book({
             cim,
             szerzok: irok,
+            zsaner,
             oldalszam,
             tartalom,
             ar,
@@ -816,6 +840,7 @@ exports.postNewBookBackend = async (req, res) => {
         return res.json({ msg: 'Valami hiba történt!' });
     }
 };
+
 ```
 
 ### `newBookRoutesBackendjs` szerkesztése
@@ -963,6 +988,26 @@ module.exports = router;
                         </td>
                     </tr>
                     <tr>
+                        <td>Zsáner:</td>
+                        <td>
+                            <select id="zsaner">
+                                <% for( let i = 0; i < zsanerek.length; i++ ) {
+                                %> <% if (book.zsaner === zsanerek[i]) { %>
+                                <option
+                                    value="<%= zsanerek[i] %>"
+                                    selected
+                                >
+                                    <%= zsanerek[i] %>
+                                </option>
+                                <% } else { %>
+                                <option value="<%= zsanerek[i] %>">
+                                    <%= zsanerek[i] %>
+                                </option>
+                                <% } %> <% } %>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
                         <td>Oldalszám:</td>
                         <td>
                             <input
@@ -1075,6 +1120,7 @@ async function modosit(event, id) {
     event.preventDefault();
     const cim = document.querySelector('#cim').value;
     const szerzok = document.querySelector('#szerzok').value;
+    const zsaner = document.querySelector('#zsaner').value;
     const oldalszam = document.querySelector('#oldalszam').value;
     const tartalom = document.querySelector('#tartalom').value;
     const ar = document.querySelector('#ar').value;
@@ -1085,7 +1131,15 @@ async function modosit(event, id) {
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ cim, szerzok, oldalszam, tartalom, ar, kep }),
+        body: JSON.stringify({
+            cim,
+            szerzok,
+            zsaner,
+            oldalszam,
+            tartalom,
+            ar,
+            kep,
+        }),
     });
 
     if (response.ok) {
@@ -1094,12 +1148,14 @@ async function modosit(event, id) {
         window.location.href = '/api/books-backend';
     }
 }
+
 ```
 
 ### `booksControllersBackend.js` szerkesztése
 
 ```
 const Book = require('../models/Book');
+const zsanerek = require('../public/js/adatok');
 
 exports.getAllBooksBackend = async (req, res) => {
     try {
@@ -1116,10 +1172,10 @@ exports.getOneBookBackend = async (req, res) => {
     try {
         const { id } = req.params;
         const book = await Book.findById({ _id: id });
-        console.log(book);
+        // let zsanerek = ['sci-fi', 'fantasy', 'krimi', 'szerelmes'];
 
         res.statusCode = 200;
-        return res.render('book.ejs', { book });
+        return res.render('book.ejs', { book, zsanerek });
     } catch (error) {
         res.statusCode = 500;
         return res.render('404.ejs');
@@ -1129,11 +1185,11 @@ exports.getOneBookBackend = async (req, res) => {
 exports.updateOneBookBackend = async (req, res) => {
     try {
         const { id } = req.params;
-        const { cim, szerzok, oldalszam, tartalom, ar, kep } = req.body;
+        const { cim, szerzok, zsaner, oldalszam, tartalom, ar, kep } = req.body;
         const irok = szerzok.split(',');
         const book = await Book.findByIdAndUpdate(
             { _id: id },
-            { cim, szerzok: irok, oldalszam, tartalom, ar, kep }
+            { cim, szerzok: irok, zsaner, oldalszam, tartalom, ar, kep }
         );
 
         res.statusCode = 200;

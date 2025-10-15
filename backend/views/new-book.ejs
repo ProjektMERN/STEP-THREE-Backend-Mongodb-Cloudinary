@@ -37,6 +37,19 @@
                         </td>
                     </tr>
                     <tr>
+                        <td>Zsáner:</td>
+                        <td>
+                            <select id="zsaner">
+                                <% for( let i = 0; i < zsanerek.length; i++ ) {
+                                %>
+                                <option value="<%= zsanerek[i] %>">
+                                    <%= zsanerek[i] %>
+                                </option>
+                                <% } %>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
                         <td>Oldalszám:</td>
                         <td>
                             <input

@@ -68,6 +68,7 @@
 -   [ ] Hozzuk létre a következő mappákat és állományokat a `backend` mappában.
 
 ```
+> cd backend
 > mkdir models views routes controllers public utils middlewares
 > touch server.js .env .gitignore
 ```
@@ -202,6 +203,7 @@ package-lock.json
 -   [ ] Hozzunk létre a `controllers` mappában egy `mainControllersBackend.js` állományt és szerkesszük.
 
 ```
+> cd backend
 > cd controllers
 > touch mainControllersBackend.js
 ```
@@ -225,6 +227,7 @@ exports.getMainBackend = (req, res) => {
 -   [ ] Hozzunk létre a `routes` mappában egy `mainRoutesBackend.js` állományt és szerkesszük.
 
 ```
+> cd backend
 > cd routes
 > touch mainRoutesBackend.js
 ```
@@ -246,6 +249,7 @@ module.exports = router;
 -   [ ] Hozzunk létre a `views` mappában egy `index.ejs` és egy `404.ejs` állományt és szerkesszük.
 
 ```
+> cd backend
 > cd views
 > touch index.ejs 404.ejs
 ```
@@ -307,6 +311,7 @@ module.exports = router;
 -   [ ] Hozzunk létre a `public` mappában egy `css` mappát. Ezen belül az `alap.css`, `main.css` és `404.css` állományokat.
 
 ```
+> cd backend
 > cd public
 > mkdir css
 > cd css

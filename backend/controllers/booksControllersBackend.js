@@ -1,4 +1,5 @@
 const Book = require('../models/Book');
+const zsanerek = require('../public/js/adatok');
 
 exports.getAllBooksBackend = async (req, res) => {
     try {
@@ -15,10 +16,10 @@ exports.getOneBookBackend = async (req, res) => {
     try {
         const { id } = req.params;
         const book = await Book.findById({ _id: id });
-        console.log(book);
+        // let zsanerek = ['sci-fi', 'fantasy', 'krimi', 'szerelmes'];
 
         res.statusCode = 200;
-        return res.render('book.ejs', { book });
+        return res.render('book.ejs', { book, zsanerek });
     } catch (error) {
         res.statusCode = 500;
         return res.render('404.ejs');
@@ -28,11 +29,11 @@ exports.getOneBookBackend = async (req, res) => {
 exports.updateOneBookBackend = async (req, res) => {
     try {
         const { id } = req.params;
-        const { cim, szerzok, oldalszam, tartalom, ar, kep } = req.body;
+        const { cim, szerzok, zsaner, oldalszam, tartalom, ar, kep } = req.body;
         const irok = szerzok.split(',');
         const book = await Book.findByIdAndUpdate(
             { _id: id },
-            { cim, szerzok: irok, oldalszam, tartalom, ar, kep }
+            { cim, szerzok: irok, zsaner, oldalszam, tartalom, ar, kep }
         );
 
         res.statusCode = 200;

@@ -12,6 +12,10 @@ const bookSchema = new mongoose.Schema(
                 required: true,
             },
         ],
+        zsaner: {
+            type: String,
+            required: true,
+        },
         oldalszam: {
             type: Number,
             required: true,
