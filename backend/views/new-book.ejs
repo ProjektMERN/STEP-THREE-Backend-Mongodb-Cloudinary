@@ -78,6 +78,28 @@
                         </td>
                     </tr>
                     <tr>
+                        <td>Példányszám:</td>
+                        <td>
+                            <input
+                                type="number"
+                                id="peldanySzam"
+                            />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Kedvezmény:</td>
+                        <td>
+                            <select id="kedvezmeny">
+                                <% for( let i = 0; i < kedvezmenyek.length; i++
+                                ) { %>
+                                <option value="<%= kedvezmenyek[i] %>">
+                                    <%= kedvezmenyek[i] %>
+                                </option>
+                                <% } %>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
                         <td>Kép:</td>
                         <td>
                             <input

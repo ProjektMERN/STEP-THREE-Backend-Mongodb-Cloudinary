@@ -26,7 +26,7 @@
                             <td><%= elem.cim %></td>
                         </tr>
                         <tr>
-                            <td>szerzők:</td>
+                            <td>Szerzők:</td>
                             <td>
                                 <% elem.szerzok.forEach(item => { %>
                                 <span><%= item %></span><br />
@@ -48,6 +48,18 @@
                         <tr>
                             <td>Ár:</td>
                             <td><%= elem.ar %> Ft</td>
+                        </tr>
+                        <tr>
+                            <td>Példányszám:</td>
+                            <td><%= elem.peldanySzam %> db</td>
+                        </tr>
+                        <tr>
+                            <td>Eladott:</td>
+                            <td><%= elem.eladott %> db</td>
+                        </tr>
+                        <tr>
+                            <td>Kedvezmény:</td>
+                            <td><%= elem.kedvezmeny %>%</td>
                         </tr>
                         <tr>
                             <td>Kép:</td>

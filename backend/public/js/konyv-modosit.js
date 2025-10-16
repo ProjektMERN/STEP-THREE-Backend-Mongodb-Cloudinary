@@ -6,6 +6,8 @@ async function modosit(event, id) {
     const oldalszam = document.querySelector('#oldalszam').value;
     const tartalom = document.querySelector('#tartalom').value;
     const ar = document.querySelector('#ar').value;
+    const peldanySzam = document.querySelector('#peldanySzam').value;
+    const kedvezmeny = document.querySelector('#kedvezmeny').value;
     const kep = document.querySelector('#kep').value;
 
     const response = await fetch(`/api/books-backend/${id}`, {
@@ -20,6 +22,8 @@ async function modosit(event, id) {
             oldalszam,
             tartalom,
             ar,
+            peldanySzam,
+            kedvezmeny,
             kep,
         }),
     });

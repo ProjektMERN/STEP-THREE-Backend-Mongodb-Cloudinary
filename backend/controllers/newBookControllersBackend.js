@@ -1,10 +1,10 @@
 const Book = require('../models/Book');
-const zsanerek = require('../public/js/adatok');
+const { zsanerek, kedvezmenyek } = require('../public/js/adatok');
 
 exports.getNewBookBackend = (req, res) => {
     try {
         res.statusCode = 200;
-        return res.render('new-book.ejs', { zsanerek });
+        return res.render('new-book.ejs', { zsanerek, kedvezmenyek });
     } catch (error) {
         res.statusCode = 500;
         return res.render('404.ejs');
@@ -13,7 +13,17 @@ exports.getNewBookBackend = (req, res) => {
 
 exports.postNewBookBackend = async (req, res) => {
     try {
-        const { cim, szerzok, zsaner, oldalszam, tartalom, ar, kep } = req.body;
+        const {
+            cim,
+            szerzok,
+            zsaner,
+            oldalszam,
+            tartalom,
+            ar,
+            peldanySzam,
+            kedvezmeny,
+            kep,
+        } = req.body;
 
         const irok = szerzok.split(',');
 
@@ -24,6 +34,8 @@ exports.postNewBookBackend = async (req, res) => {
             oldalszam,
             tartalom,
             ar,
+            peldanySzam,
+            kedvezmeny,
             kep,
         });
 

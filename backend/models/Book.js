@@ -28,6 +28,20 @@ const bookSchema = new mongoose.Schema(
             type: Number,
             required: true,
         },
+        peldanySzam: {
+            type: Number,
+            required: true,
+        },
+        eladott: {
+            type: Number,
+            default: 0,
+            required: true,
+        },
+        kedvezmeny: {
+            type: Number,
+            default: 0,
+            required: true,
+        },
         kep: {
             type: String,
             required: true,

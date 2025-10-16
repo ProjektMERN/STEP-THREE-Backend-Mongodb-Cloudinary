@@ -24,6 +24,7 @@
 }
 
 .konyv td {
+    border: 1px solid var(--sotetszurke);
     padding: 0.5em;
 }
 

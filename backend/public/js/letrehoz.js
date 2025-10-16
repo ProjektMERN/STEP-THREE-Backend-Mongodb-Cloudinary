@@ -6,6 +6,7 @@ async function letrehoz(event) {
     const oldalszam = document.querySelector('#oldalszam').value;
     const tartalom = document.querySelector('#tartalom').value;
     const ar = document.querySelector('#ar').value;
+    const peldanySzam = document.querySelector('#peldanySzam').value;
     const kep = document.querySelector('#kep').value;
 
     const response = await fetch('/api/new-book', {
@@ -20,6 +21,7 @@ async function letrehoz(event) {
             oldalszam,
             tartalom,
             ar,
+            peldanySzam,
             kep,
         }),
     });

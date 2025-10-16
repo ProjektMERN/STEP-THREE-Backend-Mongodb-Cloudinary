@@ -91,6 +91,38 @@
                         </td>
                     </tr>
                     <tr>
+                        <td>Példányszám:</td>
+                        <td>
+                            <input
+                                type="number"
+                                id="peldanySzam"
+                                value="<%= book.peldanySzam %>"
+                            />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Zsáner:</td>
+                        <td>
+                            <select id="kedvezmeny">
+                                <% for( let i = 0; i < kedvezmenyek.length; i++
+                                ) { %> <% if (book.kedvezmeny ===
+                                kedvezmenyek[i]) { %>
+                                <option
+                                    value="<%= kedvezmenyek[i] %>"
+                                    selected
+                                >
+                                    <%= kedvezmenyek[i] %>
+                                </option>
+                                <% } else { %>
+                                <option value="<%= kedvezmenyek[i] %>">
+                                    <%= kedvezmenyek[i] %>
+                                </option>
+                                <% } %> <% } %>
+                            </select>
+                        </td>
+                    </tr>
+
+                    <tr>
                         <td>Kép:</td>
                         <td>
                             <input
