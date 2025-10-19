@@ -1,0 +1,20 @@
+.book-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    margin-bottom: 1em;
+}
+
+.book-container img {
+    height: 300px;
+    object-fit: cover;
+    width: 60%;
+}
+
+.book-container button {
+    border: none;
+    background-color: rgb(0, 37, 94);
+    color: white;
+    padding: 0.5em;
+    width: 100px;
+}

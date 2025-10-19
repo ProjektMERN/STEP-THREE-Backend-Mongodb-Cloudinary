@@ -1,10 +1,16 @@
-nav {
+#nav-kontener {
     background-color: var(--kek);
     display: flex;
     flex-direction: row;
     gap: 1em;
+    justify-content: space-between;
     list-style-type: none;
     width: 100%;
+}
+
+#szerver-oldal {
+    display: flex;
+    flex-direction: row;
 }
 
 nav li a {

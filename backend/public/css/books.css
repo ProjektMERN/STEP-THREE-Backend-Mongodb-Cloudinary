@@ -3,11 +3,18 @@
 
 #books-kontener {
     margin: auto;
-    width: 80%;
+    width: 90%;
 }
 
 #books-kontener a {
     color: var(--kek);
+}
+
+#tarto {
+    display: flex;
+    flex-direction: row;
+    gap: 1em;
+    margin-top: 1em;
 }
 
 #konyvek {
@@ -54,4 +61,34 @@
 
 .torol {
     background-color: red;
+}
+
+#szurok {
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+}
+
+#szurok button {
+    background-color: var(--kek);
+    border: none;
+    color: var(--feher);
+    font-size: 1.5em;
+    padding: 1em;
+    width: 200px;
+}
+
+#zsanerek,
+#kedvezmenyek {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    margin-top: 1em;
+}
+
+#belso-zsanerek,
+#belso-kedvezmenyek {
+    display: none;
+    flex-direction: column;
+    gap: 1em;
 }

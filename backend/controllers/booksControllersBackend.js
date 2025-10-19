@@ -5,7 +5,7 @@ exports.getAllBooksBackend = async (req, res) => {
     try {
         const books = await Book.find({});
         res.statusCode = 200;
-        return res.render('books.ejs', { books });
+        return res.render('books.ejs', { books, zsanerek, kedvezmenyek });
     } catch (error) {
         res.statusCode = 500;
         return res.render('404.ejs');

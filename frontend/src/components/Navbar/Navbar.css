@@ -1,4 +1,7 @@
 .navbar-kontener {
+    display: flex;
+    flex-direction: row;
+    gap: 1em;
     background-color: blue;
     padding: 1em;
 }
@@ -6,5 +9,6 @@
 .navbar-kontener a {
     color: whitesmoke;
     cursor: pointer;
+    display: inline-block;
     text-decoration: none;
 }

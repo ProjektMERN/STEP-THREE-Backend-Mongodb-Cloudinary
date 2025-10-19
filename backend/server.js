@@ -1,6 +1,7 @@
 // npm csomagok kezelése
 require('dotenv').config();
 const express = require('express');
+const cors = require('cors');
 
 // node.js csomagok kezelése
 const path = require('node:path');
@@ -16,6 +17,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.set('view engine', 'ejs');
 // json állományok feldolgozása
 app.use(express.json());
+// CORS kezelése
+app.use(cors());
 
 // adatbázis csatlakozás
 const dbConnect = require('./utils/dbConnection');
@@ -33,10 +36,14 @@ dbConnect()
         console.log('Hiba: ' + error.msg);
     });
 
-// route-ok kezelése
+// route-ok kezelése backend
 app.use('/api', require('./routes/mainRoutesBackend'));
 app.use('/api/books-backend', require('./routes/booksRoutesBackend'));
 app.use('/api/new-book', require('./routes/newBookRoutesBackend'));
+app.use('/api/szures-book', require('./routes/szuresBooksBackend'));
+
+// route-ok kezelése frontend
+app.use('/api/books-frontend', require('./routes/booksRoutesFrontend'));
 
 // nem létező route-ok kezelése, mindig ez legyen az utolsó
 app.use((req, res) => {

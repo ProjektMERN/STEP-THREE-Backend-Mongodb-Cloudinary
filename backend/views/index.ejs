@@ -16,6 +16,64 @@
         <%- include('nav.ejs') %>
         <div id="main-kontener">
             <h1>Könyvesbolt webshop szerver oldala</h1>
+            <p><a href="/api/new-book">Új könyv felvétele</a></p>
+            <h3>Könyvek szűrése feltételekkel</h3>
+            <div id="szurok">
+                <div class="szuro">
+                    <h4>Zsánerek:</h4>
+                    <div id="zsanerek">
+                        <div class="zsaner">
+                            <input
+                                checked
+                                type="checkbox"
+                                id="zsaner-mind"
+                            />
+                            <label for="zsaner-mind">Minden zsáner</label>
+                        </div>
+                        <div id="belso-zsanerek">
+                            <% zsanerek.forEach(elem => { %>
+                            <div class="zsaner">
+                                <input
+                                    type="checkbox"
+                                    id="<%= elem %>"
+                                />
+                                <label for="<%= elem %>"><%= elem %></label>
+                            </div>
+                            <% }) %>
+                        </div>
+                    </div>
+                </div>
+                <div class="szuro">
+                    <h4>Kedvezmények:</h4>
+                    <div id="kedvezmenyek">
+                        <div class="kedvezmeny">
+                            <input
+                                checked
+                                type="checkbox"
+                                id="kedvezmeny-mind"
+                            />
+                            <label for="kedvezmeny-mind"
+                                >Minden kedvezmény</label
+                            >
+                        </div>
+                        <div id="belso-kedvezmenyek">
+                            <% kedvezmenyek.forEach(elem => { %>
+                            <div class="kedvezmeny">
+                                <input
+                                    type="checkbox"
+                                    id="kedvezmeny<%= elem %>"
+                                />
+                                <label for="kedvezmeny<%= elem %>"
+                                    ><%= elem %>%</label
+                                >
+                            </div>
+                            <% }) %>
+                        </div>
+                    </div>
+                </div>
+                <button onclick="szures()">Szűrés</button>
+            </div>
         </div>
+        <script src="/js/szures.js"></script>
     </body>
 </html>

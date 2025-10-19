@@ -17,79 +17,137 @@
         <div id="books-kontener">
             <h1>Könyvek</h1>
             <p><a href="/api/new-book">Új könyv felvétele</a></p>
-            <div id="konyvek">
-                <% books.forEach(elem => { %>
-                <div class="konyv">
-                    <table>
-                        <tr>
-                            <td>Cím:</td>
-                            <td><%= elem.cim %></td>
-                        </tr>
-                        <tr>
-                            <td>Szerzők:</td>
-                            <td>
-                                <% elem.szerzok.forEach(item => { %>
-                                <span><%= item %></span><br />
+            <div id="tarto">
+                <div id="szurok">
+                    <div class="szuro">
+                        <h4>Zsánerek:</h4>
+                        <div id="zsanerek">
+                            <div class="zsaner">
+                                <input
+                                    checked
+                                    type="checkbox"
+                                    id="zsaner-mind"
+                                />
+                                <label for="zsaner-mind">Minden zsáner</label>
+                            </div>
+                            <div id="belso-zsanerek">
+                                <% zsanerek.forEach(elem => { %>
+                                <div class="zsaner">
+                                    <input
+                                        type="checkbox"
+                                        id="<%= elem %>"
+                                    />
+                                    <label for="<%= elem %>"><%= elem %></label>
+                                </div>
                                 <% }) %>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Zsáner:</td>
-                            <td><%= elem.zsaner %></td>
-                        </tr>
-                        <tr>
-                            <td>Oldalszám:</td>
-                            <td><%= elem.oldalszam %></td>
-                        </tr>
-                        <tr>
-                            <td>Tartalom:</td>
-                            <td><%= elem.tartalom %></td>
-                        </tr>
-                        <tr>
-                            <td>Ár:</td>
-                            <td><%= elem.ar %> Ft</td>
-                        </tr>
-                        <tr>
-                            <td>Példányszám:</td>
-                            <td><%= elem.peldanySzam %> db</td>
-                        </tr>
-                        <tr>
-                            <td>Eladott:</td>
-                            <td><%= elem.eladott %> db</td>
-                        </tr>
-                        <tr>
-                            <td>Kedvezmény:</td>
-                            <td><%= elem.kedvezmeny %>%</td>
-                        </tr>
-                        <tr>
-                            <td>Kép:</td>
-                            <td>
-                                <img src="<%= elem.kep %>" />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <a
-                                    class="modosit"
-                                    href="/api/books-backend/<%= elem._id %>"
+                            </div>
+                        </div>
+                    </div>
+                    <div class="szuro">
+                        <h4>Kedvezmények:</h4>
+                        <div id="kedvezmenyek">
+                            <div class="kedvezmeny">
+                                <input
+                                    checked
+                                    type="checkbox"
+                                    id="kedvezmeny-mind"
+                                />
+                                <label for="kedvezmeny-mind"
+                                    >Minden kedvezmény</label
                                 >
-                                    Módosítás
-                                </a>
-                            </td>
-                            <td>
-                                <button
-                                    class="torol"
-                                    onclick="torles('<%= elem._id%>')"
-                                >
-                                    Törlés
-                                </button>
-                            </td>
-                        </tr>
-                    </table>
+                            </div>
+                            <div id="belso-kedvezmenyek">
+                                <% kedvezmenyek.forEach(elem => { %>
+                                <div class="kedvezmeny">
+                                    <input
+                                        type="checkbox"
+                                        id="kedvezmeny<%= elem %>"
+                                    />
+                                    <label for="kedvezmeny<%= elem %>"
+                                        ><%= elem %>%</label
+                                    >
+                                </div>
+                                <% }) %>
+                            </div>
+                        </div>
+                    </div>
+                    <button onclick="szures()">Szűrés</button>
                 </div>
-                <% }) %>
+                <div id="konyvek">
+                    <% books.forEach(elem => { %>
+                    <div class="konyv">
+                        <table>
+                            <tr>
+                                <td>Cím:</td>
+                                <td><%= elem.cim %></td>
+                            </tr>
+                            <tr>
+                                <td>Szerzők:</td>
+                                <td>
+                                    <% elem.szerzok.forEach(item => { %>
+                                    <span><%= item %></span><br />
+                                    <% }) %>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Zsáner:</td>
+                                <td><%= elem.zsaner %></td>
+                            </tr>
+                            <tr>
+                                <td>Oldalszám:</td>
+                                <td><%= elem.oldalszam %></td>
+                            </tr>
+                            <tr>
+                                <td>Tartalom:</td>
+                                <td><%= elem.tartalom %></td>
+                            </tr>
+                            <tr>
+                                <td>Ár:</td>
+                                <td><%= elem.ar %> Ft</td>
+                            </tr>
+                            <tr>
+                                <td>Példányszám:</td>
+                                <td><%= elem.peldanySzam %> db</td>
+                            </tr>
+                            <tr>
+                                <td>Eladott:</td>
+                                <td><%= elem.eladott %> db</td>
+                            </tr>
+                            <tr>
+                                <td>Kedvezmény:</td>
+                                <td><%= elem.kedvezmeny %>%</td>
+                            </tr>
+                            <tr>
+                                <td>Kép:</td>
+                                <td>
+                                    <img src="<%= elem.kep %>" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <a
+                                        class="modosit"
+                                        href="/api/books-backend/<%= elem._id %>"
+                                    >
+                                        Módosítás
+                                    </a>
+                                </td>
+                                <td>
+                                    <button
+                                        class="torol"
+                                        onclick="torles('<%= elem._id%>')"
+                                    >
+                                        Törlés
+                                    </button>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <% }) %>
+                </div>
             </div>
         </div>
         <script src="/js/konyv-kezel.js"></script>
+        <script src="/js/szures.js"></script>
     </body>
 </html>

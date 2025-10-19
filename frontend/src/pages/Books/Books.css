@@ -1,0 +1,15 @@
+.books-kontener {
+    margin: auto;
+    width: 80%;
+}
+
+.books-kontener h1 {
+    color: red;
+}
+
+.books-container {
+    display: grid;
+    row-gap: 1em;
+    grid-template-columns: repeat(4, 1fr);
+    margin-bottom: 1em;
+}

@@ -1,4 +1,6 @@
 const express = require('express');
+const pictureUploader = require('../middlewares/pictureToCloudinary');
+
 const {
     getNewBookBackend,
     postNewBookBackend,
@@ -6,6 +8,6 @@ const {
 const router = express.Router();
 
 router.get('/', getNewBookBackend);
-router.post('/', postNewBookBackend);
+router.post('/', pictureUploader, postNewBookBackend);
 
 module.exports = router;

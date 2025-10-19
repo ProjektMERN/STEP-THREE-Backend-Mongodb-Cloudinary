@@ -2,6 +2,43 @@
 @import url('./nav.css');
 
 #main-kontener {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
     margin: auto;
     width: 80%;
+}
+
+#main-kontener a {
+    color: var(--kek);
+}
+
+#szurok {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2em;
+}
+
+#szurok button {
+    background-color: var(--kek);
+    border: none;
+    color: var(--feher);
+    font-size: 1.5em;
+    padding: 1em;
+    width: 200px;
+}
+
+#zsanerek,
+#kedvezmenyek {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    margin-top: 1em;
+}
+
+#belso-zsanerek,
+#belso-kedvezmenyek {
+    display: none;
+    flex-direction: column;
+    gap: 1em;
 }
